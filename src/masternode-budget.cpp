@@ -29,7 +29,7 @@ int nSubmittedFinalBudget;
 int GetBudgetPaymentCycleBlocks()
 {
     // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-    if (Params().NetworkID() == CBaseChainParams::MAIN) return 360;
+    if (Params().NetworkID() == CBaseChainParams::MAIN) return 43200;
     //for testing purposes
 
     return 144; //ten times per day
@@ -814,9 +814,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     CAmount nSubsidy = GetBlockValue(nHeight);
 
     // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-    // return ((nSubsidy / 100) * 10) * 1440 * 30;
-
-    return 0; // budget off
+    return ((nSubsidy / 100) * 10) * 1440 * 30;
 }
 
 void CBudgetManager::NewBlock()
